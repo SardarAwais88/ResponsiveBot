@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chatbot UI</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.chatbot-container {
+			width: 400px;
+			height: 500px;
+			border: 1px solid #ccc;
+			margin: 0 auto;
+			padding: 10px;
+			overflow: auto;
+		}
+		.chatbot-message {
+			margin-bottom: 10px;
+		}
+		.chatbot-message-text {
+			background-color: #ccc;
+			padding: 5px;
+			border-radius: 10px;
+			display: inline-block;
+			max-width: 80%;
+		}
+		.user-message-text {
+			background-color: #007bff;
+			padding: 5px;
+			border-radius: 10px;
+			display: inline-block;
+			max-width: 80%;
+			color: #fff;
+			float: right;
+		}
+		.message-input {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+			box-sizing: border-box;
+		}
+		.send-button {
+			width: 100%;
+			padding: 10px;
+			background-color: #007bff;
+			color: #fff;
+			border-radius: 5px;
+			border: none;
+			cursor: pointer;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="chatbot-container">
+		<div class="chatbot-message">
+			<div class="chatbot-message-text">Hello! How can I assist you today?</div>
+		</div>
+	</div>
+	<input type="text" class="message-input" placeholder="Type your message here...">
+	<button class="send-button">Send</button>
+	<script>
+		$(document).ready(function() {
+			$('.send-button').click(function() {
+				var message = $('.message-input').val();
+				$('.chatbot-container').append('<div class="chatbot-message"><div class="user-message-text">' + message + '</div></div>');
+				$('.message-input').val('');
+				$.ajax({
+					type: 'POST',
+					url: '/chatbot',
+					data: {message: message},
+					success: function(response) {
+						$('.chatbot-container').append('<div class="chatbot-message"><div class="chatbot-message-text">' + response + '</div></div>');
+						$('.chatbot-container').scrollTop($('.chatbot-container')[0].scrollHeight);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

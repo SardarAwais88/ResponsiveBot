@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chatbot Admin Center</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Chatbot Admin Center</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<form id="prompt-form">
+					<div class="form-group">
+						<label for="prompt-input">Enter new prompt:</label>
+						<textarea class="form-control" id="prompt-input" rows="5"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Update Prompt</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
